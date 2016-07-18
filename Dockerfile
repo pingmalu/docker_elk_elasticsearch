@@ -9,6 +9,19 @@ RUN apt-get update && \
 
 RUN mkdir -p /var/run/sshd && sed -i "s/UsePrivilegeSeparation.*/UsePrivilegeSeparation no/g" /etc/ssh/sshd_config && sed -i "s/UsePAM.*/UsePAM no/g" /etc/ssh/sshd_config && sed -i "s/PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config
 
+# 安装java环境
+RUN wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie"  http://download.oracle.com/otn-pub/java/jdk/8u92-b14/jdk-8u92-linux-x64.tar.gz && \
+    tar -zxvf jdk-8u92-linux-x64.tar.gz && \
+    mkdir -p /usr/local/java && \
+    mv jdk1.8.0_92 /usr/local/java/
+
+# 安装elasticsearch5
+RUN wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/deb/elasticsearch/5.0.0-alpha4/elasticsearch-5.0.0-alpha4.deb && \
+    dpkg -i elasticsearch-5.0.0-alpha4.deb && \
+    mkdir -p /usr/share/elasticsearch/config && \
+    cp /etc/elasticsearch/elasticsearch.yml /usr/share/elasticsearch/config/elasticsearch.yml && \
+    sed -i '/^# http\.port/a http\.port:\ 9201' /usr/share/elasticsearch/config/elasticsearch.yml
+
 
 # 用完包管理器后安排打扫卫生可以显著的减少镜像大小.
 RUN apt-get clean && \

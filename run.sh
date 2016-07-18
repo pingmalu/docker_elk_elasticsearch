@@ -1,4 +1,9 @@
 #!/bin/bash
+export JAVA_HOME=/usr/local/java/jdk1.8.0_92
+export JRE_HOME=${JAVA_HOME}/jre  
+export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib  
+export PATH=${JAVA_HOME}/bin:$PATH
+
 if [ "${AUTHORIZED_KEYS}" != "**None**" ]; then
     echo "=> Found authorized keys"
     mkdir -p /root/.ssh
