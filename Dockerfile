@@ -22,6 +22,11 @@ RUN wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/dis
     cp /etc/elasticsearch/elasticsearch.yml /usr/share/elasticsearch/config/elasticsearch.yml && \
     sed -i '/^# http\.port/a http\.port:\ 9201' /usr/share/elasticsearch/config/elasticsearch.yml
 
+RUN useradd -r -m -s /bin/bash malu && \
+    mkdir /usr/share/elasticsearch/config/scripts && \
+    mkdir /usr/share/elasticsearch/logs && \
+    mkdir /usr/share/elasticsearch/data && \
+    chown malu -R /usr/share/elasticsearch/
 
 # 用完包管理器后安排打扫卫生可以显著的减少镜像大小.
 RUN apt-get clean && \
