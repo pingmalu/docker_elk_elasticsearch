@@ -38,7 +38,6 @@ ENV ELASTICSEARCH_USER **None**
 ENV ELASTICSEARCH_PASS **None**
 
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-ADD supervisord-sshd.conf /etc/supervisor/conf.d/supervisord-sshd.conf
 ADD set_root_pw.sh /set_root_pw.sh
 ADD run.sh /run.sh
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
