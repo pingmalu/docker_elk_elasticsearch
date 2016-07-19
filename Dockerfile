@@ -4,10 +4,7 @@ MAINTAINER MaLu <malu@malu.me>
 ADD sources.list /etc/apt/sources.list
 
 RUN apt-get update && \
-    apt-get install -y openssh-server pwgen vim lrzsz && \
     apt-get install -y nginx supervisor apache2-utils
-
-RUN mkdir -p /var/run/sshd && sed -i "s/UsePrivilegeSeparation.*/UsePrivilegeSeparation no/g" /etc/ssh/sshd_config && sed -i "s/UsePAM.*/UsePAM no/g" /etc/ssh/sshd_config && sed -i "s/PermitRootLogin.*/PermitRootLogin yes/g" /etc/ssh/sshd_config
 
 # 安装java环境
 RUN wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie"  http://download.oracle.com/otn-pub/java/jdk/8u92-b14/jdk-8u92-linux-x64.tar.gz && \
@@ -38,7 +35,6 @@ ENV ELASTICSEARCH_USER **None**
 ENV ELASTICSEARCH_PASS **None**
 
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-ADD set_root_pw.sh /set_root_pw.sh
 ADD run.sh /run.sh
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 ADD nginx_default /etc/nginx/sites-enabled/default
