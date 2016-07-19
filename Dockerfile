@@ -4,7 +4,7 @@ MAINTAINER MaLu <malu@malu.me>
 ADD sources.list /etc/apt/sources.list
 
 RUN apt-get update && \
-    apt-get install -y nginx supervisor apache2-utils
+    apt-get install -y wget nginx supervisor apache2-utils
 
 # 安装java环境
 RUN wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie"  http://download.oracle.com/otn-pub/java/jdk/8u92-b14/jdk-8u92-linux-x64.tar.gz && \
