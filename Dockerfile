@@ -20,7 +20,8 @@ RUN wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.0.
     dpkg -i elasticsearch-5.0.0.deb && \
     mkdir -p /usr/share/elasticsearch/config && \
     cp /etc/elasticsearch/elasticsearch.yml /usr/share/elasticsearch/config/elasticsearch.yml && \
-    sed -i '/^# http\.port/a http\.port:\ 9201' /usr/share/elasticsearch/config/elasticsearch.yml
+    sed -i '/http\.port/a http\.port:\ 9201' /usr/share/elasticsearch/config/elasticsearch.yml && \
+    cp /etc/elasticsearch/log4j2.properties /usr/share/elasticsearch/config/log4j2.properties
 
 RUN useradd -r -m -s /bin/bash malu && \
     mkdir /usr/share/elasticsearch/config/scripts && \
