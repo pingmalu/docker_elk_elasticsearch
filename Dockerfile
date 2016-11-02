@@ -16,8 +16,8 @@ RUN wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=acc
     mv jdk1.8.0_92 /usr/local/java/
 
 # 安装elasticsearch5
-RUN wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/deb/elasticsearch/5.0.0-alpha4/elasticsearch-5.0.0-alpha4.deb && \
-    dpkg -i elasticsearch-5.0.0-alpha4.deb && \
+RUN wget https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.0.0.deb && \
+    dpkg -i elasticsearch-5.0.0.deb && \
     mkdir -p /usr/share/elasticsearch/config && \
     cp /etc/elasticsearch/elasticsearch.yml /usr/share/elasticsearch/config/elasticsearch.yml && \
     sed -i '/^# http\.port/a http\.port:\ 9201' /usr/share/elasticsearch/config/elasticsearch.yml
