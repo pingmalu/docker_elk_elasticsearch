@@ -2,7 +2,7 @@
 
 set -e
 
-if [ "${ELASTICSEARCH_USER}" == "**None**" ] && [ "${ELASTICSEARCH_PASS}" == "**None**" ]; then
+if [ "${SOPEN}" == "**None**" ] ; then
     echo "=> Starting Elasticsearch with no base auth ..."
     echo "========================================================================"
     echo "You can now connect to this Elasticsearch Server using:"
